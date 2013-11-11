@@ -7,3 +7,5 @@ cookbook_file "/home/tomasz/.gitconfig" do
   source "gitconfig"
   action :create_if_missing
 end
+
+include_recipe "intellijIdea"
