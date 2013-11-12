@@ -1,4 +1,9 @@
 package "git"
+package "gitk"
+
+gem_package "git-up" do
+  action :install
+end
 
 cookbook_file "/home/tomasz/.gitconfig" do
   owner "tomasz"
