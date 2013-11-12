@@ -1,6 +1,7 @@
 package "git"
 package "gitk"
 package "git-cola"
+package "htop"
 
 to_uninstall = ["unity-lens-friends",      "unity-lens-music","unity-lens-photos","unity-lens-video" ]
 to_uninstall.each { |a| package a do 
@@ -11,6 +12,9 @@ end
 gem_package "git-up" do
   action :install
 end
+gem_package "berkshelf" do
+  action :install
+end
 
 cookbook_file "/home/tomasz/.gitconfig" do
   owner "tomasz"
@@ -19,5 +23,9 @@ cookbook_file "/home/tomasz/.gitconfig" do
   source "gitconfig"
   action :create_if_missing
 end
+
+node.default['java']['oracle']['accept_oracle_download_terms'] = true
+
+include_recipe "java::oracle"
 
 include_recipe "intellijIdea"
