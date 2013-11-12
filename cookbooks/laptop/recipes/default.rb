@@ -1,5 +1,12 @@
 package "git"
 package "gitk"
+package "git-cola"
+
+to_uninstall = ["unity-lens-friends",      "unity-lens-music","unity-lens-photos","unity-lens-video" ]
+to_uninstall.each { |a| package a do 
+	action :remove
+end 
+}
 
 gem_package "git-up" do
   action :install

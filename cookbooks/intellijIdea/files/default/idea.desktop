@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=jidea
-Comment=
-Exec=/opt/idea-IU-129.161/bin/idea.sh
-Icon=/opt/idea-IU-129.161/bin/idea.png
-Terminal=false
-Type=Application
-StartupNotify=true

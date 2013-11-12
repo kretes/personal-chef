@@ -1,11 +1,11 @@
 
 
 
-cookbook_file "/usr/share/applications/intellij.desktop" do
+cookbook_file "/home/tomasz/.local/share/applications/intellij.desktop" do
   source "ubuntu.intellij.desktop"
-  owner "root"
+  owner "tomasz"
   backup false
-  mode "0777"
+  mode "0644"
 end
 
 intellij_version = "12.1.6"
@@ -14,7 +14,7 @@ intellij_mirror_site = "http://download.jetbrains.com/idea/ideaIU-#{intellij_ver
 intellij_file = "ideaIU-#{intellij_version}.tar.gz"
 script "install_intellij" do
   interpreter "bash"
-  user "root"
+  user "tomasz"
   cwd "/tmp/"
   code <<-EOH
 rm -rf /opt/intellij
