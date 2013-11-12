@@ -25,7 +25,10 @@ cookbook_file "/home/tomasz/.gitconfig" do
 end
 
 node.default['java']['oracle']['accept_oracle_download_terms'] = true
+node.default['maven']['version']=3
 
 include_recipe "java::oracle"
 
 include_recipe "intellijIdea"
+
+include_recipe "maven::default"
