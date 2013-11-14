@@ -19,6 +19,8 @@ script "prepare_opt" do
   code <<-EOH
 rm -rf /opt/intellij
 mkdir /opt/intellij
+chown -R tomasz /opt/intellij
+chgrp -R tomasz /opt/intellij
 chmod -R a+rwx /opt
 EOH
   only_if do ! File.exists?("/opt/intellij/idea-IU/bin/idea.sh") end
@@ -32,7 +34,7 @@ script "install_intellij" do
 	cd /opt/intellij
 	wget #{intellij_mirror_site}
 	tar -zxvf #{intellij_file}
-	find . -maxdepth 1 -name "idea-IU*" -type d | head -1 | xargs -i sudo ln -s {} idea-IU
+	find . -maxdepth 1 -name "idea-IU*" -type d | head -1 | xargs -i ln -s {} idea-IU
 	rm -rf ideaIU-#{intellij_version}.tar.gz
 EOH
   only_if do ! File.exists?("/opt/intellij/idea-IU/bin/idea.sh") end
