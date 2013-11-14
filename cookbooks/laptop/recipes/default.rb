@@ -2,6 +2,7 @@ package "git"
 package "gitk"
 package "git-cola"
 package "htop"
+package "vim"
 
 to_uninstall = ["unity-lens-friends",      "unity-lens-music","unity-lens-photos","unity-lens-video" ]
 to_uninstall.each { |a| package a do 
@@ -31,4 +32,8 @@ include_recipe "java::oracle"
 
 include_recipe "intellijIdea"
 
-include_recipe "maven::default"
+#include_recipe "maven::default"
+
+
+node.default['scala']['url']="http://www.scala-lang.org/files/archive/scala-2.10.3.tgz"
+include_recipe "scala::default"
