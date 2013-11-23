@@ -5,5 +5,6 @@ git clone https://github.com/opscode-cookbooks/chef_handler.git cookbooks/chef_h
 git clone https://github.com/opscode-cookbooks/maven.git cookbooks/maven
 git clone https://github.com/opscode-cookbooks/windows.git cookbooks/windows
 git clone https://github.com/RiotGames/scala-cookbook.git cookbooks/scala
+git clone https://github.com/opscode-cookbooks/apt.git cookbooks/apt
 
 

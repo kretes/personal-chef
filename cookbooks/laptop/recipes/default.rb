@@ -5,6 +5,23 @@ package "htop"
 package "vim"
 package "gksu"
 
+apt_repository "doubleCMD" do
+  uri "http://ppa.launchpad.net/alexx2000/doublecmd/ubuntu"
+  distribution node['lsb']['codename']
+  components ["main"]
+  key "6CF401B78A9D7393F7F32E7510B3F6FDBE35DEDD"
+  keyserver "keyserver.ubuntu.com"
+  action :add
+  notifies :run, "execute[apt-get update]", :immediately
+end
+
+execute "apt-get update" do
+  action :nothing
+end
+
+
+package "doublecmd-gtk"
+
 to_uninstall = ["unity-lens-friends",      "unity-lens-music","unity-lens-photos","unity-lens-video" ]
 to_uninstall.each { |a| package a do 
 	action :remove
@@ -26,20 +43,20 @@ cookbook_file "/home/tomasz/.gitconfig" do
   action :create_if_missing
 end
 
-node.default['java']['oracle']['accept_oracle_download_terms'] = true
-node.default['java']['install_flavor'] = "oracle"
-node.default['maven']['version']=3
+#node.default['java']['oracle']['accept_oracle_download_terms'] = true
+#node.default['java']['install_flavor'] = "oracle"
+#node.default['maven']['version']=3
 
 
-include_recipe "intellijIdea"
+#include_recipe "intellijIdea"
 
 #include_recipe "maven::default"
 
 
-node.default['scala']['url']="http://www.scala-lang.org/files/archive/scala-2.10.3.tgz"
+#node.default['scala']['url']="http://www.scala-lang.org/files/archive/scala-2.10.3.tgz"
 #include_recipe "scala::default"
 
-include_recipe "java::oracle"
+#include_recipe "java::oracle"
 
 #pwdhashurl="https://addons.mozilla.org/firefox/downloads/latest/1033/addon-1033-latest.xpi"
 #script "pwdhash install" do
