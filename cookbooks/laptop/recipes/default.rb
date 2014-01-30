@@ -4,6 +4,8 @@ package "git-cola"
 package "htop"
 package "vim"
 package "gksu"
+package "vlc"
+package "xbmc"
 
 apt_repository "doubleCMD" do
   uri "http://ppa.launchpad.net/alexx2000/doublecmd/ubuntu"
@@ -19,8 +21,21 @@ execute "apt-get update" do
   action :nothing
 end
 
-
 package "doublecmd-gtk"
+
+directory "/mnt/ramdisk" do
+  owner "root"
+  group "root"
+  mode 00777
+  action :create
+end
+
+mount "/mnt/ramdisk" do
+	device "tmpfs"
+	fstype "tmpfs"
+	options "defaults,size=6G"
+  action [:mount, :enable]
+end
 
 to_uninstall = ["unity-lens-friends",      "unity-lens-music","unity-lens-photos","unity-lens-video" ]
 to_uninstall.each { |a| package a do 
@@ -28,12 +43,12 @@ to_uninstall.each { |a| package a do
 end 
 }
 
-gem_package "git-up" do
-  action :install
-end
-gem_package "berkshelf" do
-  action :install
-end
+#gem_package "git-up" do
+#  action :install
+#end
+#gem_package "berkshelf" do
+#  action :install
+#end
 
 cookbook_file "/home/tomasz/.gitconfig" do
   owner "tomasz"
@@ -45,12 +60,13 @@ end
 
 #node.default['java']['oracle']['accept_oracle_download_terms'] = true
 #node.default['java']['install_flavor'] = "oracle"
-#node.default['maven']['version']=3
+node.default['maven']['version']=3
+node.default['maven']['3']['url']='http://ftp.ps.pl/pub/apache/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz'
 
 
 #include_recipe "intellijIdea"
 
-#include_recipe "maven::default"
+include_recipe "maven::default"
 
 
 #node.default['scala']['url']="http://www.scala-lang.org/files/archive/scala-2.10.3.tgz"
